@@ -1,0 +1,43 @@
+---
+title: "Week3AssignmentAVR"
+author: "AVR"
+date: "December 31, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+##Background
+This assignment features the sales of a certain product in the Philippines
+(which I can't disclose, sorry) from January to December 2018.  The market is divided
+into 8 Market Areas :
+
+- NOL : Northern Luzon
+- CEL : Central Luzon
+- SOL : South Luzon
+- BIC : Bicol
+- VIS : Visayas
+- NOM : North Mindanao
+- SOM : South Mindanao
+- MM  : Metro Manila
+
+The plot is 3-dimensional. You can drag the mouse over the figure to rotate the graph.
+
+
+```{r echo=FALSE, warning=FALSE, message=FALSE }
+
+
+library(plotly)
+library(ggplot2)
+
+setwd("D:/DOST Coursera/Module 9/Week3")
+sales_data = read.csv("sales.csv", na.strings=c("", "NA"))
+
+
+Sales <- as.numeric(sales_data$NEWINSTALL)
+
+
+plot_ly(sales_data, x=~MONTH, y=~Sales, z=~MARKETAREA, 
+        type="scatter3d", color=~factor(MARKETAREA))
+```
